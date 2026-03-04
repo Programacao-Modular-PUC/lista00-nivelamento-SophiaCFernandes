@@ -12,12 +12,12 @@ public class Exercicio08 {
 		int[] qtdObjetos = new int[2];
 
 		for (int i = 0; i < valorObjetos.length; i++) {
-			for (int j = 0; j < qtdObjetos.length; j++) {
-				System.out.println("Digite o valor do objeto " + (i + 1) + " :");
-				valorObjetos[i] = sc.nextDouble();
-				System.out.println("Digite a quantidade vendida desse objeto: ");
-				qtdObjetos[i] = sc.nextInt();
-			}
+			System.out.println("Digite o valor do objeto " + (i + 1) + " :");
+			valorObjetos[i] = sc.nextDouble();
+		}
+		for (int j = 0; j < qtdObjetos.length; j++) {
+			System.out.println("Digite a quantidade vendida do objeto " + (j+1));
+			qtdObjetos[j] = sc.nextInt();
 		}
 
 		int indiceMaisVendido = retornaIndiceMaisVendido(qtdObjetos);
@@ -33,13 +33,24 @@ public class Exercicio08 {
 	}
 	
 	//TO-DO Um relatório na tela contendo: quantidade vendida, valor unit´ario e valor total de cada objeto
+	
+	public static void mostraValorUnitQtd(double[] a, int[] b) {
+		for (int i = 0; i < a.length; i++) {
+			for (int j = 0; j < b.length; j++) {
+				System.out.println("Valor unitário do objeto " + (i+1) + ":R$" + a[i]);
+				System.out.println();
+			}
+		}
+
+		
+	}
 
 	public static int retornaIndiceMaisVendido(int[] b) {
 		int maiorQtd = b[0];
 		int cont = 0;
 		for (int i = 0; i < b.length; i++) {
 			if (b[i] > maiorQtd) {
-				maiorQtd = b[i];
+				 b[i]= maiorQtd;
 				cont++;
 			}
 		}
@@ -72,12 +83,12 @@ public class Exercicio08 {
 
 	public static double calculaComissao(double totalVendas) {
 		double comissao = 0;
-		comissao = ((545) + (totalVendas * 0.5));
+		comissao = (totalVendas * 0.05);
 		return comissao;
 	}
 	
 	public static void mostraComissao(double comissao) {
-		System.out.println("O valor da comissão é de: R$" + comissao);
+		System.out.println("O valor da comissão a ser pago é de: R$" + comissao);
 	}
 
 }
