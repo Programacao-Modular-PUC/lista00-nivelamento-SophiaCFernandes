@@ -24,37 +24,36 @@ public class Exercicio08 {
 		mostraValorMaisVendido(indiceMaisVendido, valorObjetos);
 		mostraIndiceMaisVendido(indiceMaisVendido);
 
-		double totalVendas = calculaValorVendas(valorObjetos);
+		double totalVendas = calculaValorVendas(valorObjetos, qtdObjetos);
 		mostraValorVendas(totalVendas);
 		
 		double comissao = calculaComissao(totalVendas);
 		mostraComissao(comissao);
 		
-	}
-	
-	//TO-DO Um relatório na tela contendo: quantidade vendida, valor unit´ario e valor total de cada objeto
-	
-	public static void mostraValorUnitQtd(double[] a, int[] b) {
-		for (int i = 0; i < a.length; i++) {
-			for (int j = 0; j < b.length; j++) {
-				System.out.println("Valor unitário do objeto " + (i+1) + ":R$" + a[i]);
-				System.out.println();
-			}
-		}
-
+		mostraValorUnitQtd(valorObjetos, qtdObjetos);
+		
+		mostraPagamentoFinal(comissao);
 		
 	}
+	
+	public static void mostraValorUnitQtd(double[] precos, int[] quantidades) {
+	    for (int i = 0; i < precos.length; i++) {
+	        double totalObjeto = precos[i] * quantidades[i];
+	        System.out.printf("Objeto %d : Preço: R$%.2f | Qtd: %d | Total: R$%.2f%n", 
+	                          (i + 1), precos[i], quantidades[i], totalObjeto);
+	    }
+	}
 
-	public static int retornaIndiceMaisVendido(int[] b) {
-		int maiorQtd = b[0];
-		int cont = 0;
-		for (int i = 0; i < b.length; i++) {
-			if (b[i] > maiorQtd) {
-				 b[i]= maiorQtd;
-				cont++;
-			}
-		}
-		return cont;
+	public static int retornaIndiceMaisVendido(int[] quantidades) {
+	    int maiorQtd = quantidades[0];
+	    int indice = 0;
+	    for (int i = 1; i < quantidades.length; i++) {
+	        if (quantidades[i] > maiorQtd) {
+	            maiorQtd = quantidades[i]; 
+	            indice = i;            
+	        }
+	    }
+	    return indice;
 	}
 
 	public static void mostraIndiceMaisVendido(int indiceMaisVendido) {
@@ -69,12 +68,12 @@ public class Exercicio08 {
 		}
 	}
 
-	public static double calculaValorVendas(double[] a) {
-		int soma = 0;
-		for (int i = 0; i < a.length; i++) {
-			soma += a[i];
-		}
-		return soma;
+	public static double calculaValorVendas(double[] precos, int[] quantidades) {
+	    double somaTotal = 0;
+	    for (int i = 0; i < precos.length; i++) {
+	        somaTotal += (precos[i] * quantidades[i]);
+	    }
+	    return somaTotal;
 	}
 
 	public static void mostraValorVendas(double totalVendas) {
@@ -89,6 +88,11 @@ public class Exercicio08 {
 	
 	public static void mostraComissao(double comissao) {
 		System.out.println("O valor da comissão a ser pago é de: R$" + comissao);
+	}
+	
+	public static void mostraPagamentoFinal(double comissao) {
+	    double salarioFixo = 545.00;
+	    System.out.printf("Salário Total: R$ %.2f%n", (salarioFixo + comissao));
 	}
 
 }
